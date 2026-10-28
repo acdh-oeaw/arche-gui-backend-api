@@ -21,4 +21,4 @@
 /nbproject
 .editorconfig
 /log/ontology.cache
-
+/src/arche-config/config-gui.yaml
