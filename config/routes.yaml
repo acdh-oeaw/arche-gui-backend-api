@@ -1,0 +1,236 @@
+# yaml-language-server: $schema=../vendor/symfony/routing/Loader/schema/routing.schema.json
+
+# This file is the entry point to configure the routes of your app.
+# Methods with the #[Route] attribute are automatically imported.
+# See also https://symfony.com/doc/current/routing.html
+
+# To list all registered routes, run the following command:
+#   bin/console debug:router
+
+controllers:
+    resource: routing.controllers
+
+## homepage slider
+arche_api_topcollections:
+  path: '/topcollections/{count}/{lang}'
+  controller: 'App\Controller\MetadataController::getTopCollections'
+  requirements:
+    count: '^[^\?]*$'
+    lang: '^[^\?]*$'
+    _permission: 'access content'
+    _access: 'TRUE'
+    
+## metadata view main api    
+arche_core_api_expert:    
+  path: '/expert/{id}/{lang}'
+  defaults:
+    _controller: 'App\Controller\MetadataController::getExpertData'
+  requirements:
+    id: '^[^\?]*$'
+    lang: '^[^\?]*$'
+    _permission: 'access content'
+    _access: 'TRUE'     
+
+## breadrcumb
+arche_core_api_breadcrumb:    
+  path: '/breadcrumb/{id}/{lang}'
+  defaults:
+    _controller: 'App\Controller\MetadataController::getBreadcrumb'
+  requirements:
+    id: '^[^\?]*$'
+    lang: '^[^\?]*$'
+    _permission: 'access content'
+    _access: 'TRUE'  
+    
+## metadata view child api
+arche_core_api_child_tree:    
+    path: '/child-tree/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\ChildController::getChildTreeData'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'
+
+## metadata view facets
+arche_core_api_versions_list:    
+    path: '/versions-list/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\VersionsController::getVersionsList'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'            
+
+## metadata datatables
+arche_core_api_rpr_table:    
+    path: '/rprDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getRPRDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'         
+      
+arche_core_api_publications_table:    
+    path: '/publicationsDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getPublicationsDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'    
+        
+arche_core_api_collectionConcept_table:    
+    path: '/collectionConceptDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getCollectionConceptDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'            
+        
+arche_core_api_project_accociated_table:    
+    path: '/projectAssociatedDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getProjectAssociatedDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'
+        
+arche_core_api_spatial_table:    
+    path: '/spatialDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getSpatialDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'   
+        
+arche_core_api_contributed_table:    
+    path: '/contributedDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getContributedDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'         
+        
+arche_core_api_ispartof_table:    
+    path: '/isPartOfDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getIsPartOfDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'          
+        
+arche_core_api_involved_table:    
+    path: '/involvedDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getInvolvedDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'        
+        
+arche_core_api_hasmembers_table:    
+    path: '/hasMembersDT/{id}/{lang}'
+    defaults:
+        _controller: '\App\Controller\InverseDataController::getHasMembersDT'
+    requirements:
+        identifier: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'            
+        
+arche_core_smart_autocomplete_table:    
+    path: '/smsearch/autocomplete/{str}'
+    defaults:
+        _controller: '\App\Controller\SmartSearchController::smartSearchAutoComplete'
+        _format: 'json'
+    requirements:
+        str: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'             
+arche_core_root_table:    
+    path: '/rootTable/{lang}'
+    defaults:
+        _controller: '\App\Controller\OntologyController::getRootTable'
+        _format: 'json'
+    requirements:
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'      
+                  
+arche_core_ontologyjs_table:    
+    path: '/ontologyjs/{lang}'
+    defaults:
+        _controller: '\App\Controller\OntologyController::getOntologyTable'
+        _format: 'json'
+    requirements:
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'      
+        
+arche_core_accepted_formats_table:    
+    path: '/accepted-formats-table/{lang} '
+    defaults:
+        _controller: '\App\Controller\OntologyController::getAcceptedFormatsTable'
+        _format: 'json'
+    requirements:
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'           
+       
+
+arche_core_api_next_prev_item:    
+    path: '/nextPrevItem/{rootId}/{resourceId}/{lang}'
+    defaults:
+        _controller: '\App\Controller\ChildController::getNextPrevItem'
+    requirements:
+        rootId: '^[^\?]*$'
+        resourceId: '^[^\?]*$'
+        lang: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'                  
+
+arche_core_api_smart_search:    
+    path: '/smartsearch'
+    methods: [GET, POST]
+    defaults:
+        _controller: '\App\Controller\SmartSearchController::search'
+        _format: 'json'
+    requirements:        
+        _permission: 'access content'
+        _access: 'TRUE'      
+        
+arche_core_api_frontend_statistics:
+    path: '/frontendStat/{lang}'
+    defaults:
+        _controller: '\App\Controller\MetadataController::frontendStat'
+    requirements:
+        lang: '^[^\?]*$' 
+        _permission: 'access content'
+        _access: 'TRUE'            
+
+arche_core_api_software_versions:
+    path: '/software_versions'
+    methods: [GET]
+    defaults:
+        _controller: '\App\Controller\SoftwareVersionsController::softwareVersions'
+    requirements:
+        lang: '^[^\?]*$' 
+        _permission: 'access content'
+        _access: 'TRUE'            
